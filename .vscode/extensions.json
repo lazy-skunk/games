@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "github.vscode-github-actions",
+    "ms-vscode.live-server",
+    "openai.chatgpt",
+    "VoidZero.vite-plus-extension-pack"
+  ]
+}

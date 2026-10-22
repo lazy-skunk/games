@@ -1,0 +1,21 @@
+name: Vite+ Test
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: voidzero-dev/setup-vp@v1.21.2
+        with:
+          node-version: "lts"
+          cache: true
+          run-install: |
+            - args: ["--frozen-lockfile"]
+
+      - run: vp test
