@@ -1,12 +1,12 @@
 // @vitest-environment jsdom
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { HashRouter } from "react-router";
+import { BrowserRouter } from "react-router";
 import { afterEach, beforeEach, expect, test, vi } from "vite-plus/test";
 
 import App from "./App";
 
 beforeEach(() => {
-  window.history.replaceState(null, "", "/games/");
+  window.history.replaceState(null, "", "/");
 });
 
 afterEach(() => {
@@ -16,9 +16,9 @@ afterEach(() => {
 
 test("opens a listed game and preserves its settings through its title", async () => {
   render(
-    <HashRouter>
+    <BrowserRouter>
       <App />
-    </HashRouter>,
+    </BrowserRouter>,
   );
   expect(screen.getAllByRole("listitem")).toHaveLength(3);
   fireEvent.click(screen.getByRole("link", { name: "Number Place" }));
@@ -26,15 +26,15 @@ test("opens a listed game and preserves its settings through its title", async (
   fireEvent.change(difficulty, { target: { value: "hard" } });
   fireEvent.click(screen.getByRole("link", { name: "Number Place" }));
   expect((screen.getByRole("combobox") as HTMLSelectElement).value).toBe("hard");
-  expect(window.location.hash).toBe("#/number-place");
+  expect(window.location.pathname).toBe("/number-place");
 }, 10000);
 
 test("loads a direct game URL and follows browser history", async () => {
-  window.history.pushState(null, "", "/games/#/number-place");
+  window.history.pushState(null, "", "/number-place");
   render(
-    <HashRouter>
+    <BrowserRouter>
       <App />
-    </HashRouter>,
+    </BrowserRouter>,
   );
   await screen.findByRole("heading", { name: "Number Place" }, { timeout: 5000 });
   expect(screen.getAllByRole("textbox")).toHaveLength(81);
@@ -45,11 +45,11 @@ test("loads a direct game URL and follows browser history", async () => {
 }, 10000);
 
 test("shows the game list for an unknown URL", async () => {
-  window.history.replaceState(null, "", "/games/#/missing");
+  window.history.replaceState(null, "", "/missing");
   render(
-    <HashRouter>
+    <BrowserRouter>
       <App />
-    </HashRouter>,
+    </BrowserRouter>,
   );
   await screen.findByRole("link", { name: "Games" });
 });
@@ -58,16 +58,16 @@ test("opens breakout, preserves play through its title and pause, and stops its 
   vi.spyOn(window, "requestAnimationFrame").mockReturnValue(1);
   const cancelFrame = vi.spyOn(window, "cancelAnimationFrame");
   const { unmount } = render(
-    <HashRouter>
+    <BrowserRouter>
       <App />
-    </HashRouter>,
+    </BrowserRouter>,
   );
   fireEvent.click(screen.getByRole("link", { name: "Breakout" }));
   fireEvent.click(await screen.findByRole("button", { name: "Start" }, { timeout: 5000 }));
   expect(screen.getByRole("button", { name: "Pause" })).toBeDefined();
 
   fireEvent.click(screen.getByRole("link", { name: "Breakout" }));
-  expect(window.location.hash).toBe("#/breakout");
+  expect(window.location.pathname).toBe("/breakout");
   expect(screen.getByRole("button", { name: "Pause" })).toBeDefined();
 
   fireEvent.click(screen.getByRole("button", { name: "Pause" }));
