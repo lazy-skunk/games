@@ -23,7 +23,7 @@ type BreakoutViewProps = Pick<
   onPlay: () => void;
 };
 const button =
-  "cursor-pointer rounded px-4 py-2 text-sm font-medium motion-safe:transition motion-safe:active:translate-y-px";
+  "cursor-pointer rounded px-4 py-2 motion-safe:transition motion-safe:active:translate-y-px";
 const messages = {
   ready: "Ready",
   playing: "Playing",
@@ -53,10 +53,10 @@ export function BreakoutView({
       }}
     >
       <header className="mb-2 flex flex-wrap items-center gap-2">
-        <h1 className="text-lg font-semibold">
+        <h1 className="text-lg font-bold">
           <Link to="/breakout">Breakout</Link>
         </h1>
-        <dl className="bg-foreground/3 ml-auto rounded px-3 py-2 text-center text-sm tabular-nums">
+        <dl className="bg-foreground/3 ml-auto rounded px-4 py-2 text-center tabular-nums">
           <dt className="text-xs">Lives</dt>
           <dd className="font-semibold">{game.lives}</dd>
         </dl>
@@ -94,7 +94,7 @@ export function BreakoutView({
             <circle cx={game.ball.x} cy={game.ball.y} r={BALL_RADIUS} className="fill-foreground" />
           </svg>
           {game.status !== "playing" && (
-            <div className="bg-background/50 absolute inset-0 flex flex-col items-center justify-center gap-3 rounded">
+            <div className="bg-background/50 absolute inset-0 flex flex-col items-center justify-center gap-4 rounded">
               <p>{title}</p>
               <button
                 type="button"
@@ -111,14 +111,14 @@ export function BreakoutView({
           <button
             type="button"
             onClick={onPlay}
-            className={`${button} bg-yellow-100 text-yellow-900 dark:bg-yellow-900 dark:text-yellow-100`}
+            className={`${button} bg-blue-100 text-blue-900 dark:bg-blue-900 dark:text-blue-100`}
           >
             Pause
           </button>
         </div>
 
-        <section className="bg-foreground/3 mt-2 rounded p-2 text-sm">
-          <h2 className="mb-1">How to play</h2>
+        <section className="bg-foreground/3 mt-2 rounded p-2">
+          <h2 className="mb-2 font-semibold">How to play</h2>
           <p>Move: mouse, touch, or ← → with the board focused. Space: start/pause. Esc: pause.</p>
           <p>Clear all {BRICK_COUNT} bricks with 3 lives.</p>
         </section>
