@@ -35,7 +35,14 @@ const games = [
 export default function App() {
   return (
     <div className="bg-background text-foreground min-h-screen">
-      <Suspense fallback={<p className="p-5">Loading…</p>}>
+      <Suspense
+        fallback={
+          <p className="text-foreground/50 flex items-center gap-2 p-6">
+            <span className="size-4 rounded-full border-2 border-current border-t-transparent motion-safe:animate-spin" />
+            Loading…
+          </p>
+        }
+      >
         <Routes>
           {games.map(({ id, Component }) => (
             <Route key={id} path={`/${id}`} element={<Component />} />
@@ -49,20 +56,20 @@ export default function App() {
 
 function GameList() {
   return (
-    <>
-      <header className="mx-auto max-w-4xl px-6 py-4 text-center">
-        <h1 className="text-lg font-semibold">
+    <div className="flex flex-col gap-6 p-6">
+      <header className="mx-auto max-w-4xl text-center">
+        <h1 className="text-lg font-bold">
           <Link to="/">Games</Link>
         </h1>
       </header>
-      <main className="p-8">
+      <main>
         <ul className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
           {games.map(({ id, name, description, screenshot, screenshotContentWidth }) => (
             <li key={id}>
               <Link
                 to={`/${id}`}
                 aria-labelledby={`${id}-title`}
-                className="bg-foreground/3 hover:bg-foreground/6 block h-full rounded p-6"
+                className="bg-foreground/3 hover:bg-foreground/6 block h-full rounded p-4 motion-safe:transition-colors"
               >
                 <img
                   src={screenshot}
@@ -72,15 +79,15 @@ function GameList() {
                   className="mb-4 w-full rounded object-cover"
                   style={{ aspectRatio: `${screenshotContentWidth + 32} / 1080` }}
                 />
-                <h2 id={`${id}-title`} className="text-lg font-semibold">
+                <h2 id={`${id}-title`} className="font-semibold">
                   {name}
                 </h2>
-                <p className="text-foreground/50 mt-2 text-sm">{description}</p>
+                <p className="text-foreground/50 mt-2">{description}</p>
               </Link>
             </li>
           ))}
         </ul>
       </main>
-    </>
+    </div>
   );
 }
