@@ -40,14 +40,14 @@ export function CelestialMergeView({
       }}
     >
       <header className="mb-2 flex flex-wrap items-center gap-2 text-gray-100">
-        <h1 className="text-lg font-semibold">
+        <h1 className="text-lg font-bold">
           <Link to="/celestial-merge">Celestial Merge</Link>
         </h1>
-        <div className="bg-foreground/3 ml-auto grid justify-items-center rounded px-3 py-2 text-center">
+        <div className="bg-foreground/3 ml-auto grid justify-items-center rounded px-4 py-2 text-center">
           <span className="text-xs">Next</span>
           <CelestialBodyPreview level={nextDropLevel} />
         </div>
-        <div className="bg-foreground/3 ml-auto grid justify-items-center rounded px-3 py-2 text-center">
+        <div className="bg-foreground/3 ml-auto grid justify-items-center rounded px-4 py-2 text-center">
           <span className="text-xs">Score</span>
           <strong>{displayedScore}</strong>
         </div>
@@ -66,12 +66,12 @@ export function CelestialMergeView({
             }}
           />
           {isGameOver && (
-            <div className="bg-background/50 absolute inset-0 flex flex-col items-center justify-center gap-3 rounded">
+            <div className="bg-background/50 absolute inset-0 flex flex-col items-center justify-center gap-4 rounded">
               <p>Game Over</p>
               <strong className="text-xl">{displayedScore} pts</strong>
               <button
                 type="button"
-                className="cursor-pointer rounded bg-green-100 px-4 py-2 text-sm font-medium text-green-900 motion-safe:transition motion-safe:active:translate-y-px dark:bg-green-900 dark:text-green-100"
+                className="cursor-pointer rounded bg-green-100 px-4 py-2 text-green-900 motion-safe:transition motion-safe:active:translate-y-px dark:bg-green-900 dark:text-green-100"
                 onClick={onReset}
               >
                 Play again
@@ -80,8 +80,8 @@ export function CelestialMergeView({
           )}
         </div>
 
-        <section className="bg-background/50 mt-2 rounded p-2 text-sm">
-          <h2 className="mb-1">How to play</h2>
+        <section className="bg-background/50 mt-2 rounded p-2">
+          <h2 className="mb-2 font-semibold">How to play</h2>
           {helpTextLines.map((line) => (
             <p key={line}>{line}</p>
           ))}
@@ -94,9 +94,9 @@ export function CelestialMergeView({
 
 function CelestialProgressionRow({ levels }: { levels: CelestialLevel[] }) {
   return (
-    <div className="flex flex-wrap justify-center gap-1">
+    <div className="flex flex-wrap justify-center gap-2">
       {levels.map((level, index) => (
-        <div key={level} className="flex gap-1">
+        <div key={level} className="flex gap-2">
           {index > 0 && <span>→</span>}
           <CelestialBodyPreview level={level} size={20} />
         </div>
