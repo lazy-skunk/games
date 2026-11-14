@@ -24,9 +24,9 @@ export function NumberPlaceControls({
   return (
     <div className="flex flex-wrap items-center justify-center gap-2">
       <label>
-        <span className="text-sm font-medium">Difficulty:</span>{" "}
+        <span>Difficulty:</span>{" "}
         <select
-          className="bg-foreground/3 rounded px-2 py-1"
+          className="bg-foreground/3 hover:bg-foreground/6 rounded p-2 motion-safe:transition-colors"
           value={selectedDifficulty}
           onChange={(event) => setSelectedDifficulty(event.target.value as Difficulty)}
         >
@@ -44,7 +44,7 @@ export function NumberPlaceControls({
 
       <button
         type="button"
-        className="cursor-pointer rounded bg-green-100 px-4 py-2 text-sm font-medium text-green-900 motion-safe:transition motion-safe:active:translate-y-px dark:bg-green-900 dark:text-green-100"
+        className="cursor-pointer rounded bg-green-100 px-4 py-2 text-green-900 motion-safe:transition motion-safe:active:translate-y-px dark:bg-green-900 dark:text-green-100"
         onClick={() => onNewGame(selectedDifficulty)}
       >
         New Game
@@ -52,7 +52,7 @@ export function NumberPlaceControls({
 
       <button
         type="button"
-        className="cursor-pointer rounded bg-red-100 px-4 py-2 text-sm font-medium text-red-900 motion-safe:transition motion-safe:active:translate-y-px dark:bg-red-900 dark:text-red-100"
+        className="cursor-pointer rounded bg-red-100 px-4 py-2 text-red-900 motion-safe:transition motion-safe:active:translate-y-px dark:bg-red-900 dark:text-red-100"
         onClick={onReset}
       >
         Reset
@@ -60,7 +60,7 @@ export function NumberPlaceControls({
 
       <button
         type="button"
-        className="cursor-pointer rounded bg-green-100 px-4 py-2 text-sm font-medium text-green-900 motion-safe:transition motion-safe:active:translate-y-px dark:bg-green-900 dark:text-green-100"
+        className="cursor-pointer rounded bg-green-100 px-4 py-2 text-green-900 motion-safe:transition motion-safe:active:translate-y-px dark:bg-green-900 dark:text-green-100"
         onClick={onToggleVerifyResultVisibility}
       >
         {isVerifyResultVisible ? "Hide Result" : "Verify"}

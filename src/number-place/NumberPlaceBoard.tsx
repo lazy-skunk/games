@@ -137,7 +137,7 @@ export function NumberPlaceBoard({
             type="button"
             disabled={!canEdit || blockedDigits.has(digit)}
             onClick={() => enterDigit(String(digit))}
-            className="disabled:bg-foreground/3 disabled:text-foreground/50 dark:disabled:bg-foreground/3 dark:disabled:text-foreground/50 cursor-pointer rounded bg-green-100 px-4 py-2 text-sm font-medium text-green-900 disabled:cursor-not-allowed disabled:active:translate-y-0 motion-safe:transition motion-safe:active:translate-y-px dark:bg-green-900 dark:text-green-100"
+            className="disabled:bg-foreground/3 disabled:text-foreground/50 dark:disabled:bg-foreground/3 dark:disabled:text-foreground/50 cursor-pointer rounded bg-green-100 px-4 py-2 text-green-900 disabled:cursor-not-allowed disabled:active:translate-y-0 motion-safe:transition motion-safe:active:translate-y-px dark:bg-green-900 dark:text-green-100"
           >
             {digit}
           </button>
@@ -146,7 +146,7 @@ export function NumberPlaceBoard({
           type="button"
           disabled={!canEdit || selected?.value === 0}
           onClick={() => enterDigit("")}
-          className="disabled:bg-foreground/3 disabled:text-foreground/50 dark:disabled:bg-foreground/3 dark:disabled:text-foreground/50 cursor-pointer rounded bg-red-100 px-4 py-2 text-sm font-medium text-red-900 disabled:cursor-not-allowed disabled:active:translate-y-0 motion-safe:transition motion-safe:active:translate-y-px dark:bg-red-900 dark:text-red-100"
+          className="disabled:bg-foreground/3 disabled:text-foreground/50 dark:disabled:bg-foreground/3 dark:disabled:text-foreground/50 cursor-pointer rounded bg-red-100 px-4 py-2 text-red-900 disabled:cursor-not-allowed disabled:active:translate-y-0 motion-safe:transition motion-safe:active:translate-y-px dark:bg-red-900 dark:text-red-100"
         >
           Clear
         </button>

@@ -42,14 +42,14 @@ export default function App() {
   );
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-5 p-3">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6 p-6">
       <header>
-        <h1 className="text-lg font-semibold">
+        <h1 className="text-lg font-bold">
           <Link to="/number-place">Number Place</Link>
         </h1>
       </header>
 
-      <main className="flex flex-col items-center gap-5">
+      <main className="flex flex-col items-center gap-4 tabular-nums">
         <NumberPlaceControls
           difficulty={difficulty}
           onNewGame={handleNewGame}
